@@ -1,5 +1,7 @@
 # MobileApp
 
+username:raie2006
+name: Rusu Anca Stefania
 Doctor's Office
 
    Hi buddy, I have a business proposal for you. I know that you are the best software developer ever(wink), and I desperately need a new piece of software for managing my appointments. Since I have moved to this new office, I have more patients and it's been very hard for me to keep track of all the appointments. Besides, as you know, my assistant is a pretty old lady, aaaaaand she started to forgot a lot lately, so one day I have too many patients and the other day I have none.
