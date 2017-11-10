@@ -11,8 +11,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.List;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
 
+
+
+public class MainActivity extends AppCompatActivity {
+    public static final String EXTRA_MESSAGE = "com.example.anca.doctech";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,8 +32,39 @@ public class MainActivity extends AppCompatActivity {
                 sendEmail();
             }
         });
+        Button userDetails = (Button) findViewById(R.id.button2);
+        userDetails.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                sendMessage(view);
+            }
+        });
+//        Handler mHandler = new Handler() {
+//            @Override
+//            public void publish(LogRecord record) {
+//
+//            }
+//
+//            @Override
+//            public void flush() {
+//
+//            }
+//
+//            @Override
+//            public void close() throws SecurityException {
+//
+//            }
+//        };
     }
 
+
+//    protected void onHandleIntent(Intent intent) {
+//        mHandler.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                Toast.makeText(MyIntentService.this, "Test", Toast.LENGTH_LONG).show();
+//            }
+//        });
+//    }
     public void sendEmail() {
         Log.i("Send email", "");
         String TO = String.valueOf("anca_rusu01@yahoo.com");
@@ -49,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 + "\nCNP: " + editText3.getText().toString()
                 +"\n\n\nRegards,\nDocTech team");
 
+
         try {
             startActivity(Intent.createChooser(emailIntent, "Send mail..."));
             finish();
@@ -58,6 +96,20 @@ public class MainActivity extends AppCompatActivity {
         }
 
 //        finish();
+    }
+
+    public void sendMessage(View view) {
+        Intent intent = new Intent(this, ListActivity.class);
+        EditText editText = (EditText) findViewById(R.id.username);
+        EditText editText1 = (EditText) findViewById(R.id.name);
+        EditText editText2 = (EditText) findViewById(R.id.email);
+        String message = editText.getText().toString();
+        String message1 = editText1.getText().toString();
+        String message2 = editText2.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, message);
+        intent.putExtra(EXTRA_MESSAGE, message1);
+        intent.putExtra(EXTRA_MESSAGE, message2);
+        startActivity(intent);
     }
 
 }
