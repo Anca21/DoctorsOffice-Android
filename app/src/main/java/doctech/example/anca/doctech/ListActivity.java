@@ -3,8 +3,6 @@ package doctech.example.anca.doctech;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -21,10 +19,16 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
 
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        String message = intent.getStringExtra("username");
+        String message1 = intent.getStringExtra("name");
+        String message2 = intent.getStringExtra("email");
 
-        TextView textView = (TextView) findViewById(R.id.cnp);
+        EditText textView = (EditText) findViewById(R.id.username);
+        EditText textView1 = (EditText) findViewById(R.id.name);
+        EditText textView2 = (EditText) findViewById(R.id.email);
         textView.setText(message);
+        textView1.setText(message1);
+        textView2.setText(message2);
 //        final Button edit = (Button) findViewById(R.id.button3);
 //        edit.setOnClickListener(new View.OnClickListener() {
 //            public void onClick(View view) {

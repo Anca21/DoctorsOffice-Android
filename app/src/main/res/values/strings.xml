@@ -11,4 +11,5 @@
     <string name="give_username"> Please give your username</string>
     <string name="give_cnp"> Please give your cnp</string>
     <string name="give_dob"> Please give your date of birth</string>
+    <string name="edit">Edit</string>
 </resources>
