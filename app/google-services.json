@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "663228326014",
+    "firebase_url": "https://doctorsoffice-android.firebaseio.com",
+    "project_id": "doctorsoffice-android",
+    "storage_bucket": "doctorsoffice-android.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663228326014:android:4931d655a9720492",
+        "android_client_info": {
+          "package_name": "doctech.example.anca.doctech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "663228326014-p7e9eag90ggmj2asffelvsk1hqqj1u39.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "doctech.example.anca.doctech",
+            "certificate_hash": "b947b25ef18300a39820492a138e0a5adfeae159"
+          }
+        },
+        {
+          "client_id": "663228326014-fd1du844bu5v25d0bkgremt6juc3d5mg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5bsuGeYY_7zFHxNYW2o55-6RkgA5YP8E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "663228326014-fd1du844bu5v25d0bkgremt6juc3d5mg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
