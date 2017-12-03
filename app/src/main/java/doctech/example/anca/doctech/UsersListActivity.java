@@ -1,5 +1,6 @@
 package doctech.example.anca.doctech;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,6 +9,8 @@ import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
 
 
 import java.util.ArrayList;
@@ -29,6 +32,14 @@ public class UsersListActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("");
         initViews();
         initObjects();
+
+        final Button button = (Button) findViewById(R.id.button_id);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intentRegister = new Intent(getApplicationContext(), AddUserActivity.class);
+                startActivity(intentRegister);
+            }
+        });
 
     }
 

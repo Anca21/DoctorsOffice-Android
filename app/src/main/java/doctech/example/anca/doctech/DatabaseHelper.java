@@ -23,6 +23,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // User table name
     private static final String TABLE_USER = "user";
+    // Patient table
+    private static final String TABLE_PATIENT = "patient";
+    private static final String TABLE_DIAGNOSIS = "diagnosis_id";
+    private static final String TABLE_PATIENT_DIAGNOSIS = "patient_diagnosis";
+    private static final String TABLE_CONSULT = "consult";
+    private static final String TABLE_PATIENT_TREATMENT = "patient_treatment";
+
 
     // User Table Columns names
     private static final String COLUMN_USER_ID = "user_id";
@@ -31,13 +38,65 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_USER_PASSWORD = "user_password";
     private static final String COLUMN_USER_ROLE = "user_role";
 
+    // Patient Table Columns
+    private static final String COLUMN_PATIENT_ID = "patient_id";
+    private static final String COLUMN_PATIENT_NAME = "patient_name";
+    private static final String COLUMN_PATIENT_EMAIL = "patient_email";
+    private static final String COLUMN_PATIENT_PASSWORD = "patient_password";
+    private static final String COLUMN_PATIENT_CNP = "patient_cnp";
+    private static final String COLUMN_PATIENT_ADDRESS = "patient_address";
+
+    // Patient_diagnosis Table Columns
+    private static final String COLUMN_P_D_ID = "p_d_id";
+    private static final String COLUMN_P_DIAGNOSIS_ID = "p_diagnosis_id";
+    private static final String COLUMN_PATIENT_D_ID = "patient_d_id";
+
+    // Diagnosis Table Columns
+    private static final String COLUMN_DIAGNOSIS_ID = "diagnosis_id";
+    private static final String COLUMN_DIAGNOSIS_NAME = "diagnosis_name";
+    private static final String COLUMN_DIAGNOSIS_DESCRIPTION = "diagnosis_description";
+
+    // Consult Table Columns
+    private static final String COLUMN_CONSULT_ID= "consult_id";
+    private static final String COLUMN_C_PATIENT_ID= "c_patient_id";
+    private static final String COLUMN_DATETIME= "datetime_id";
+
+    // Patient Treatment Columns
+    private static final String COLUMN_P_T_ID = "p_t_id";
+    private static final String COLUMN_PATIENT_T_ID = "patient_t_id";
+    private static final String COLUMN_TREATMENT_DESCRIPTION = "treatment_description";
+
+
+
     // create table sql query
     private String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
             + COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_USER_NAME + " TEXT,"
             + COLUMN_USER_EMAIL + " TEXT," + COLUMN_USER_PASSWORD + " TEXT," + COLUMN_USER_ROLE + " TEXT" + ")";
+    private String CREATE_PATIENT_TABLE = "CREATE TABLE " + TABLE_PATIENT + "("
+            + COLUMN_PATIENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_PATIENT_NAME+ " TEXT,"
+            + COLUMN_PATIENT_EMAIL + " TEXT," + COLUMN_PATIENT_PASSWORD + " TEXT," + COLUMN_PATIENT_ADDRESS  +
+            " TEXT," + COLUMN_PATIENT_CNP   +  " TEXT" + ")";
+    private String CREATE_DIAGNOSIS_TABLE = "CREATE TABLE " + TABLE_DIAGNOSIS + "("
+            + COLUMN_DIAGNOSIS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_DIAGNOSIS_NAME + " TEXT,"
+            + COLUMN_DIAGNOSIS_DESCRIPTION + " TEXT" + ")";
+    private String CREATE_PATIENT_DIAGNOSIS_TABLE = "CREATE TABLE " + TABLE_PATIENT_DIAGNOSIS + "("
+            + COLUMN_P_D_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,FOREIGN KEY(" + COLUMN_P_DIAGNOSIS_ID + ") REFERENCES "
+            + TABLE_DIAGNOSIS + "(" + COLUMN_DIAGNOSIS_ID +"),FOREIGN KEY(" + COLUMN_PATIENT_D_ID + ") REFERENCES "
+            + TABLE_PATIENT + "(" + COLUMN_PATIENT_ID + ")" + ")";
+    private String CREATE_CONSULT_TABLE = "CREATE TABLE " + TABLE_CONSULT + "("
+            + COLUMN_CONSULT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,FOREIGN KEY(" + COLUMN_C_PATIENT_ID + ") REFERENCES "
+            + TABLE_PATIENT + "(" + COLUMN_PATIENT_ID + ")," + COLUMN_DATETIME + "DATETIME"+ ")";
+    private String CREATE_PATIENT_TREATMENT = "CREATE TABLE " + TABLE_PATIENT_TREATMENT + "("
+            + COLUMN_P_T_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,FOREIGN KEY(" + COLUMN_PATIENT_T_ID + ") REFERENCES "
+            + TABLE_PATIENT + "(" + COLUMN_PATIENT_ID+ ")," + COLUMN_TREATMENT_DESCRIPTION + " TEXT" + ")";
 
     // drop table sql query
     private String DROP_USER_TABLE = "DROP TABLE IF EXISTS " + TABLE_USER;
+    private String DROP_PATIENT_TABLE = "DROP TABLE IF EXISTS " + TABLE_PATIENT;
+    private String DROP_PATIENT_TREATMENT_TABLE = "DROP TABLE IF EXISTS " + TABLE_PATIENT_TREATMENT;
+    private String DROP_DIAGNOSIS_TABLE = "DROP TABLE IF EXISTS " + TABLE_DIAGNOSIS;
+    private String DROP_CONSULT_TABLE = "DROP TABLE IF EXISTS " + TABLE_CONSULT;
+    private String DROP_PATIENT_DIAGNOSIS_TABLE = "DROP TABLE IF EXISTS " + TABLE_PATIENT_DIAGNOSIS;
 
     /**
      * Constructor
@@ -51,6 +110,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_USER_TABLE);
+        db.execSQL(CREATE_PATIENT_TABLE);
+        db.execSQL(CREATE_DIAGNOSIS_TABLE);
+        db.execSQL(CREATE_PATIENT_DIAGNOSIS_TABLE);
+        db.execSQL(CREATE_CONSULT_TABLE);
+        db.execSQL(CREATE_PATIENT_TREATMENT);
     }
 
 
@@ -58,6 +122,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
         //Drop User Table if exist
+        db.execSQL(DROP_PATIENT_TREATMENT_TABLE);
+        db.execSQL(DROP_PATIENT_DIAGNOSIS_TABLE);
+        db.execSQL(DROP_CONSULT_TABLE);
+        db.execSQL(DROP_DIAGNOSIS_TABLE);
+        db.execSQL(DROP_PATIENT_TABLE);
         db.execSQL(DROP_USER_TABLE);
 
         // Create tables again
@@ -81,6 +150,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // Inserting Row
         db.insert(TABLE_USER, null, values);
+        db.close();
+    }
+
+    public void addPatient(Patient patient) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_PATIENT_NAME, patient.getName());
+        values.put(COLUMN_PATIENT_EMAIL, patient.getEmail());
+        values.put(COLUMN_PATIENT_PASSWORD, patient.getPassword());
+        values.put(COLUMN_PATIENT_ADDRESS, patient.getAddress());
+        values.put(COLUMN_PATIENT_CNP, patient.getCnp());
+
+        User user = new User();
+        user.setRole("patient");
+        user.setEmail(patient.getEmail());
+        user.setName(patient.getName());
+        user.setPassword(patient.getPassword());
+        addUser(user);
+        // Inserting Row
+        db.insert(TABLE_PATIENT, null, values);
         db.close();
     }
 
