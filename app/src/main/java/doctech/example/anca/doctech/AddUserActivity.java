@@ -202,7 +202,7 @@ public class AddUserActivity extends AppCompatActivity implements View.OnClickLi
             Toast.makeText(AddUserActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
         }
 
-//        finish();
+
     }
 }
 

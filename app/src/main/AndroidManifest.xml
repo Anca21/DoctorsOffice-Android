@@ -74,16 +74,15 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".UsersListActivity"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".DoctorsProfileActivity"
             android:label="@string/title_activity_doctors_profile"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".PatientsProfileActivity"
-            android:label="@string/title_activity_patients_profile"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AddUserActivity"></activity>
+        <activity android:name=".AddUserActivity" />
+        <activity android:name=".PatientProfileActivity"></activity>
     </application>
 
 </manifest>

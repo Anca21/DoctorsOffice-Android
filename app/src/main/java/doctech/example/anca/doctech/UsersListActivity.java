@@ -1,5 +1,7 @@
 package doctech.example.anca.doctech;
 
+import android.app.*;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -10,7 +12,10 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Toast;
 
 
 import java.util.ArrayList;
@@ -18,10 +23,12 @@ import java.util.List;
 
 public class UsersListActivity extends AppCompatActivity {
 
+    public Activity activity1;
     private AppCompatActivity activity = UsersListActivity.this;
     private AppCompatTextView textViewName;
     private RecyclerView recyclerViewUsers;
     private List<User> listUsers;
+    private ListView listView = (ListView) listUsers;
     private UsersRecyclerAdapter usersRecyclerAdapter;
     private DatabaseHelper databaseHelper;
 
@@ -41,7 +48,23 @@ public class UsersListActivity extends AppCompatActivity {
             }
         });
 
+//        System.out.println("ajunge aici");
+//        listView.setOnItemClickListener(
+//                new AdapterView.OnItemClickListener() {
+//
+//                    @Override
+//                    public void onItemClick(AdapterView<?> arg0, View view,
+//                                            int position, long id) {
+//                        // TODO Auto-generated method stub
+//                        Object o = listUsers.get(position);
+//                        String pen = o.toString();
+//                        Toast.makeText(getApplicationContext(), "You have chosen the pen: " + " " + pen, Toast.LENGTH_LONG).show();
+//
+//                    }
+//                }
+//        );
     }
+
 
     /**
      * This method is to initialize views

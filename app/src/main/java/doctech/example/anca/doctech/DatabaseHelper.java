@@ -250,6 +250,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void updatePatient(Patient patient) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_PATIENT_NAME, patient.getName());
+        values.put(COLUMN_PATIENT_EMAIL, patient.getEmail());
+        values.put(COLUMN_PATIENT_CNP, patient.getCnp());
+        values.put(COLUMN_PATIENT_ADDRESS, patient.getAddress());
+
+        User u = new User();
+        u.setId(patient.getId());
+        u.setPassword(patient.getPassword());
+        u.setName(patient.getName());
+        u.setEmail(patient.getEmail());
+        u.setRole("patient");
+        // updating row
+        db.update(TABLE_USER, values, COLUMN_PATIENT_ID + " = ?",
+                new String[]{String.valueOf(patient.getId())});
+        db.close();
+    }
+
     /**
      * This method is to delete user record
      *
