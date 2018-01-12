@@ -82,7 +82,11 @@
             android:label="@string/title_activity_doctors_profile"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AddUserActivity" />
-        <activity android:name=".PatientProfileActivity"></activity>
+        <activity android:name=".PatientProfileActivity" />
+        <activity
+            android:name=".ChartActivity"
+            android:label="@string/title_activity_chart"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

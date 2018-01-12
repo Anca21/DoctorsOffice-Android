@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -111,10 +112,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_USER_TABLE);
         db.execSQL(CREATE_PATIENT_TABLE);
-        db.execSQL(CREATE_DIAGNOSIS_TABLE);
-        db.execSQL(CREATE_PATIENT_DIAGNOSIS_TABLE);
-        db.execSQL(CREATE_CONSULT_TABLE);
-        db.execSQL(CREATE_PATIENT_TREATMENT);
+//        db.execSQL(CREATE_DIAGNOSIS_TABLE);
+//        db.execSQL(CREATE_PATIENT_DIAGNOSIS_TABLE);
+//        db.execSQL(CREATE_CONSULT_TABLE);
+//        db.execSQL(CREATE_PATIENT_TREATMENT);
     }
 
 
@@ -122,10 +123,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
         //Drop User Table if exist
-        db.execSQL(DROP_PATIENT_TREATMENT_TABLE);
-        db.execSQL(DROP_PATIENT_DIAGNOSIS_TABLE);
-        db.execSQL(DROP_CONSULT_TABLE);
-        db.execSQL(DROP_DIAGNOSIS_TABLE);
+//        db.execSQL(DROP_PATIENT_TREATMENT_TABLE);
+//        db.execSQL(DROP_PATIENT_DIAGNOSIS_TABLE);
+//        db.execSQL(DROP_CONSULT_TABLE);
+//        db.execSQL(DROP_DIAGNOSIS_TABLE);
         db.execSQL(DROP_PATIENT_TABLE);
         db.execSQL(DROP_USER_TABLE);
 
@@ -168,10 +169,59 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         user.setEmail(patient.getEmail());
         user.setName(patient.getName());
         user.setPassword(patient.getPassword());
-        addUser(user);
+
         // Inserting Row
         db.insert(TABLE_PATIENT, null, values);
+        addUser(user);
         db.close();
+    }
+
+    List<Patient> getPatient(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String sortOrder =
+                COLUMN_PATIENT_NAME + " ASC";
+        String[] columns = {
+                COLUMN_PATIENT_ID,
+                COLUMN_PATIENT_NAME,
+                COLUMN_PATIENT_EMAIL,
+                COLUMN_PATIENT_PASSWORD,
+                COLUMN_PATIENT_ADDRESS,
+                COLUMN_PATIENT_CNP
+        };
+        Cursor cursor = db.rawQuery("SELECT * FROM patient", null);
+//        Cursor cursor = db.rawQuery("SELECT * FROM patient WHERE TRIM(patient_name) = '"+name.trim()+"' AND TRIM(patient_email) = '"+email.trim()+"'" , null);
+//        Cursor cursor = db.query(TABLE_PATIENT, //Table to query
+//                columns,    //columns to return
+//                null,        //columns for the WHERE clause
+//                null,        //The values for the WHERE clause
+//                null,       //group the rows
+//                null,       //filter by row groups
+//                sortOrder); //The sort order
+
+
+        // Traversing through all rows and adding to list
+        List<Patient> patients = new ArrayList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                Patient p = new Patient();
+                p.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_PATIENT_ID))));
+                p.setName(cursor.getString(cursor.getColumnIndex(COLUMN_PATIENT_NAME)));
+                p.setEmail(cursor.getString(cursor.getColumnIndex(COLUMN_PATIENT_EMAIL)));
+                p.setPassword(cursor.getString(cursor.getColumnIndex(COLUMN_PATIENT_PASSWORD)));
+                p.setAddress(cursor.getString(cursor.getColumnIndex(COLUMN_PATIENT_ADDRESS)));
+                p.setCnp(cursor.getString(cursor.getColumnIndex(COLUMN_PATIENT_CNP)));
+                // Adding user record to list
+                patients.add(p);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        // return user list
+        return patients;
+
+
     }
 
     /**
@@ -245,8 +295,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_USER_ROLE, user.getRole());
 
         // updating row
-        db.update(TABLE_USER, values, COLUMN_USER_ID + " = ?",
-                new String[]{String.valueOf(user.getId())});
+        db.update(TABLE_USER, values, COLUMN_USER_EMAIL + " = ?",
+                new String[]{String.valueOf(user.getEmail())});
         db.close();
     }
 
@@ -256,18 +306,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_PATIENT_NAME, patient.getName());
         values.put(COLUMN_PATIENT_EMAIL, patient.getEmail());
-        values.put(COLUMN_PATIENT_CNP, patient.getCnp());
         values.put(COLUMN_PATIENT_ADDRESS, patient.getAddress());
-
+        values.put(COLUMN_PATIENT_CNP, patient.getCnp());
+        Log.d("CONTENTVALUES  ", String.valueOf(values));
         User u = new User();
         u.setId(patient.getId());
         u.setPassword(patient.getPassword());
         u.setName(patient.getName());
         u.setEmail(patient.getEmail());
         u.setRole("patient");
+
+
         // updating row
-        db.update(TABLE_USER, values, COLUMN_PATIENT_ID + " = ?",
-                new String[]{String.valueOf(patient.getId())});
+        db.update(TABLE_PATIENT, values, COLUMN_PATIENT_EMAIL + " = ?",
+                new String[]{String.valueOf(patient.getEmail())});
+
+        updateUser(u);
         db.close();
     }
 

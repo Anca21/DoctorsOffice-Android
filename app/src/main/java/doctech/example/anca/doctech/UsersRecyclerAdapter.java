@@ -6,6 +6,7 @@ package doctech.example.anca.doctech;
 
 import android.content.Context;
 import android.content.Intent;
+import android.provider.SyncStateContract;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
@@ -13,7 +14,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -55,7 +60,7 @@ public class UsersRecyclerAdapter extends RecyclerView.Adapter<UsersRecyclerAdap
     /**
      * ViewHolder class
      */
-    public class UserViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class UserViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         Context context;
         public AppCompatTextView textViewName;
@@ -65,14 +70,11 @@ public class UsersRecyclerAdapter extends RecyclerView.Adapter<UsersRecyclerAdap
 
         public UserViewHolder(final View view) {
             super(view);
-
             context = view.getContext();
-
-            textViewName = (AppCompatTextView) view.findViewById(R.id.textViewName);
-            textViewEmail = (AppCompatTextView) view.findViewById(R.id.textViewEmail);
-            textViewPassword = (AppCompatTextView) view.findViewById(R.id.textViewPassword);
-            textViewRole = (AppCompatTextView) view.findViewById(R.id.textViewRole);
-
+            textViewName = view.findViewById(R.id.textViewName);
+            textViewEmail = view.findViewById(R.id.textViewEmail);
+            textViewPassword = view.findViewById(R.id.textViewPassword);
+            textViewRole = view.findViewById(R.id.textViewRole);
             view.setClickable(true);
             view.setOnClickListener(this);
 
@@ -81,14 +83,24 @@ public class UsersRecyclerAdapter extends RecyclerView.Adapter<UsersRecyclerAdap
         @Override
         public void onClick(View view) {
             final Intent intent;
+            DatabaseHelper databaseHelper = new DatabaseHelper(context);
+            List<Patient> patients = new ArrayList<>();
+            patients.addAll(databaseHelper.getPatient());
 
             if(textViewRole.getText().equals("patient")){
                 intent = new Intent(context , PatientProfileActivity.class);
+                intent.putExtra("NAME", textViewName.getText().toString());
+                intent.putExtra("EMAIL", textViewEmail.getText().toString());
+                intent.putExtra("ADDRESS", patients.get(0).getAddress().toString());
+                intent.putExtra("CNP", patients.get(0).getCnp().toString());
+                intent.putExtra("PASSWORD", patients.get(0).getPassword().toString());
+                intent.putExtra("ID", String.valueOf(patients.get(0).getId()));
                 context.startActivity(intent);
             }else{
                 intent = new Intent(context , DoctorsProfileActivity.class);
                 context.startActivity(intent);
             }
+
 
 
         }

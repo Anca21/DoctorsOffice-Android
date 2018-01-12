@@ -1,183 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="doctech.example.anca.doctech.PatientProfileActivity"
-    tools:layout_editor_absoluteY="81dp"
-    tools:layout_editor_absoluteX="0dp"
-    android:background="@color/colorBackground">
-
-    <TextView
-        android:id="@+id/textViewPatientName"
-        android:layout_width="0dp"
-        android:layout_height="33dp"
-        android:text="@string/hint_name"
-        android:visibility="visible"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toTopOf="@+id/textViewPAddress"
-        app:layout_constraintRight_toRightOf="@+id/textViewPatientAddress"
-        android:layout_marginTop="90dp"
-        tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="92dp"
-        app:layout_constraintLeft_toLeftOf="@+id/textViewPatientEmail"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintVertical_bias="0.1" />
-
-    <TextView
-        android:id="@+id/textViewPatientEmail"
-        android:layout_width="0dp"
-        android:layout_height="33dp"
-        android:visibility="visible"
-        android:text="@string/hint_email"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toTopOf="@+id/textViewPatientAddress"
-        app:layout_constraintRight_toRightOf="@+id/textViewPatientAddress"
-        android:layout_marginTop="25dp"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPatientName"
-        tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="27dp"
-        app:layout_constraintLeft_toLeftOf="@+id/textViewPatientAddress"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintVertical_bias="0.067" />
-
-    <TextView
-        android:id="@+id/textViewPatientCnp"
-        android:layout_width="0dp"
-        android:layout_height="36dp"
-        android:text="@string/cnp"
-        android:visibility="visible"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toTopOf="@+id/textViewPatientName"
-        app:layout_constraintRight_toRightOf="@+id/textViewPatientEmail"
-        android:layout_marginTop="28dp"
-        tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="26dp"
-        app:layout_constraintLeft_toLeftOf="@+id/textViewPatientName"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Edit"
-        android:layout_marginStart="31dp"
-        android:visibility="visible"
-        android:layout_marginLeft="31dp"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toBottomOf="@+id/button4"
-        tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button4" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Delete"
-        android:layout_marginEnd="43dp"
-        android:visibility="visible"
-        android:layout_marginRight="43dp"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginBottom="57dp" />
-
-    <TextView
-        android:id="@+id/textViewPName"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="@string/hint_name"
-        android:visibility="visible"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toTopOf="@+id/textViewPatientAddress"
-        android:layout_marginEnd="1dp"
-        app:layout_constraintRight_toRightOf="@+id/textViewPAddress"
-        android:layout_marginTop="95dp"
-        tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="96dp"
-        app:layout_constraintLeft_toLeftOf="@+id/textViewPEmail"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginRight="1dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/textViewPEmail"
-        android:layout_width="0dp"
-        android:layout_height="18dp"
-        android:text="@string/hint_email"
-        android:visibility="visible"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewPatientAddress"
-        app:layout_constraintRight_toRightOf="@+id/textViewPAddress"
-        android:layout_marginTop="67dp"
-        tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="67dp"
-        app:layout_constraintLeft_toLeftOf="@+id/textViewPAddress"
-        app:layout_constraintTop_toTopOf="@+id/textViewPatientName"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintVertical_bias="0.515" />
-
-    <TextView
-        android:id="@+id/textViewPCnp"
-        android:layout_width="16dp"
-        android:layout_height="46dp"
-        android:text="CNP"
-        android:visibility="visible"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewPatientCnp"
-        android:layout_marginEnd="34dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginBottom="-48dp"
-        android:layout_marginRight="58dp"
-        tools:layout_editor_absoluteX="334dp" />
-
-    <TextView
-        android:id="@+id/textViewPatientAddress"
-        android:layout_width="216dp"
-        android:layout_height="34dp"
-        android:text="Address"
-        android:visibility="visible"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintRight_creator="1"
-        android:layout_marginEnd="58dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="228dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginRight="58dp" />
-
-    <TextView
-        android:id="@+id/textViewPAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Address"
-        android:visibility="visible"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="31dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        tools:layout_constraintTop_creator="1"
-        android:layout_marginTop="139dp"
-        app:layout_constraintTop_toTopOf="@+id/textViewPatientAddress" />
-
-</android.support.constraint.ConstraintLayout>
-
-    <!--<?xml version="1.0" encoding="utf-8"?>-->
 <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
 <!--xmlns:tools="http://schemas.android.com/tools"-->
 <!--android:layout_width="match_parent"-->
@@ -187,78 +8,98 @@
 <!--android:paddingLeft="20dp"-->
 <!--android:paddingRight="20dp"-->
 <!--android:paddingTop="20dp"-->
-<!--tools:context="doctech.example.anca.doctech.PatientProfileActivity">-->
-
-<!--<android.support.v7.widget.LinearLayoutCompat-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
+<!--tools:context="doctech.example.anca.doctech.PatientProfileActivity"-->
     <!--android:orientation="vertical">-->
 
-    <!--<android.support.design.widget.TextInputLayoutx-->
-        <!--android:id="@+id/textInputLayoutName1"-->
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nestedScrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:paddingBottom="20dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="20dp">
+    <!--tools:context=".UsersListActivity">-->
+
+    <!--<android.widget.TextView-->
+        <!--android:id="@+id/textview1"-->
         <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="40dp">-->
+        <!--android:layout_height="match_parent" />-->
 
-        <!--<android.support.design.widget.TextInputEditText-->
-            <!--android:id="@+id/textInputEditTextName1"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:hint="@string/hint_name"-->
-            <!--android:inputType="text"-->
-            <!--android:maxLines="1"-->
-            <!--android:textColor="@android:color/white" />-->
-    <!--</android.support.design.widget.TextInputLayoutx>-->
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <!--<android.support.design.widget.TextInputLayout-->
-        <!--android:id="@+id/textInputLayoutEmail1"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="20dp">-->
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textInputLayoutName1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp">
 
-        <!--<android.support.design.widget.TextInputEditText-->
-            <!--android:id="@+id/textInputEditTextEmail1"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:hint="@string/hint_email"-->
-            <!--android:maxLines="1"-->
-            <!--android:textColor="@android:color/white" />-->
-    <!--</android.support.design.widget.TextInputLayout>-->
-    <!--<android.support.design.widget.TextInputLayout-->
-        <!--android:id="@+id/textInputLayoutCnp1"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="20dp">-->
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/textInputEditTextName1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_name"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@android:color/white" />
+        </android.support.design.widget.TextInputLayout>
 
-        <!--<android.support.design.widget.TextInputEditText-->
-            <!--android:id="@+id/textInputEditTextCnp1"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:hint="@string/cnp"-->
-            <!--android:maxLines="1"-->
-            <!--android:textColor="@android:color/white" />-->
-    <!--</android.support.design.widget.TextInputLayout>-->
-    <!--<android.support.design.widget.TextInputLayout-->
-        <!--android:id="@+id/textInputLayoutAddress1"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="20dp">-->
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textInputLayoutEmail1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
 
-        <!--<android.support.design.widget.TextInputEditText-->
-            <!--android:id="@+id/textInputEditTextAddress1"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:hint="Address"-->
-            <!--android:maxLines="1"-->
-            <!--android:textColor="@android:color/white" />-->
-    <!--</android.support.design.widget.TextInputLayout>-->
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/textInputEditTextEmail1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_email"
+                android:maxLines="1"
+                android:textColor="@android:color/white" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textInputLayoutCnp1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
 
-    <!--<android.support.v7.widget.AppCompatButton-->
-        <!--android:id="@+id/appCompatButtonEdit1"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="40dp"-->
-        <!--android:background="@color/colorTextHint"-->
-        <!--android:text="Edit" />-->
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/textInputEditTextCnp1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/cnp"
+                android:maxLines="1"
+                android:textColor="@android:color/white" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textInputLayoutAddress1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
 
-<!--</android.support.v7.widget.LinearLayoutCompat>-->
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/textInputEditTextAddress1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Address"
+                android:maxLines="1"
+                android:textColor="@android:color/white" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/appCompatButtonEdit1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@color/colorTextHint"
+            android:text="Edit" />
+
+    </android.support.v7.widget.LinearLayoutCompat>
+</android.support.v4.widget.NestedScrollView>
+

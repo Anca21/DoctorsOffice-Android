@@ -130,4 +130,5 @@
     <string name="text_title">Android Tutorials Hub</string>
     <string name="title_activity_doctors_profile">DoctorsProfileActivity</string>
     <string name="title_activity_patients_profile">PatientsProfileActivity</string>
+    <string name="title_activity_chart">ChartActivity</string>
 </resources>

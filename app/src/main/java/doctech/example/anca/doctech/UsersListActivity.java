@@ -37,17 +37,30 @@ public class UsersListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_users_list);
         getSupportActionBar().setTitle("");
+
         initViews();
+
         initObjects();
+
 
         final Button button = (Button) findViewById(R.id.button_id);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intentRegister = new Intent(getApplicationContext(), AddUserActivity.class);
-                startActivity(intentRegister);
+                Intent intent = new Intent(getApplicationContext(), AddUserActivity.class);
+                startActivity(intent);
             }
         });
 
+        final Button chartButton = (Button) findViewById(R.id.chart_button);
+        chartButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent intentChart = new Intent(getApplicationContext(), ChartActivity.class);
+                for(int i=0;i<listUsers.size();i++){
+                    intentChart.putExtra("USER"+i, listUsers.get(i).getRole());
+                }
+                startActivity(intentChart);
+            }
+        });
 //        System.out.println("ajunge aici");
 //        listView.setOnItemClickListener(
 //                new AdapterView.OnItemClickListener() {
